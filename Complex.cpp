@@ -1,4 +1,4 @@
-#include <iostream>
+п»ї#include <iostream>
 using namespace std;
 
 
@@ -19,7 +19,7 @@ public:
 	bool operator == (const Complex& b);
 	bool operator != (const Complex& b);
 	friend ostream& operator <<(ostream& os, const Complex& b);
-	friend istream& operator >>(istream& is, const Complex& b);
+	friend istream& operator >>(istream& is, Complex& b);
 
 };
 
@@ -34,13 +34,13 @@ Complex::Complex(double Re, double Im) {
 }
 
 Complex::Complex(Complex& complex) {
-	Re = complex.Re;
-	Im = complex.Im;
+	this->Re = complex.Re;
+	this->Im = complex.Im;
 }
 
 void Complex::SetComplex(double Re, double Im) {
 	this->Re = Re;
-	this->Im = Re;
+	this->Im = Im;
 }
 
 Complex Complex::GetComplex() {
@@ -74,6 +74,7 @@ Complex Complex:: operator/ (const Complex& b) {
 	return temp;
 }
 Complex& Complex:: operator= (const Complex& b) {
+	if(this!=&b)
 	Re = b.Re;
 	Im = b.Im;
 	return *this;
@@ -93,7 +94,7 @@ ostream& operator <<(ostream& os, const Complex& b) {
 
 }
 
-istream& operator >>(istream& is, const Complex& b) {
+istream& operator >>(istream& is,  Complex& b) {
 	is >> b.Re;
 	is >> b.Im;
 	return is;
@@ -106,17 +107,23 @@ int main() {
 	Complex a;
 	Complex b(23, 92);
 	Complex c(b);
+	cout << "РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ : " << a << endl << "РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РёРЅРёС†РёР°Р»РёР·Р°С‚РѕСЂ : " << b << endl << "РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РєРѕРїРёСЂРѕРІР°РЅРёСЏ : " << c << endl;
 	c.SetComplex(124, -1);
-	cout << "Конструктор по умолчанию : " << a << endl << "Конструктор инициализации : " << b << endl << "Конструктор копирования : " << c << endl << "Доступ к защищенным полям класса : " << c.GetComplex() << endl;
-	Complex d = a + b;
+	cout << "Р”РѕСЃС‚СѓРї Рє Р·Р°С‰РёС‰РµРЅРЅС‹Рј РїРѕР»СЏРј : " << c.GetComplex() << endl;
+	Complex d;
+	d = a + b;
 	cout << "+ : " << d << endl;
-	Complex e = a - b;
+	Complex e;
+	e = a - b;
 	cout << "- : " << e << endl;
-	Complex f = a * b;
+	Complex f;
+	f = a * b;
 	cout << "* : " << f << endl;
-	Complex g = a / b;
+	Complex g;
+	g = a / b;
 	cout << "/ : " << g << endl;
-	Complex h = b;
+	Complex h;
+	h = a = b;
 	cout << "= : " << h << endl;
 	bool i = a == b;
 	cout << "== : " << i << endl;
@@ -125,6 +132,7 @@ int main() {
 	Complex k(-9, 4);
 	cout << "<< : " << k << endl;
 	Complex l;
+	cout << "Р’РІРµРґРёС‚Рµ РєРѕРјРїР»РµРєСЃРЅРѕРµ С‡РёСЃР»Рѕ" << endl;
 	cin >> l;
 	cout << ">> : " << l << endl;
 }
