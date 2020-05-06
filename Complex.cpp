@@ -1,4 +1,4 @@
-п»ї#include <iostream>
+#include <iostream>
 using namespace std;
 
 
@@ -74,9 +74,10 @@ Complex Complex:: operator/ (const Complex& b) {
 	return temp;
 }
 Complex& Complex:: operator= (const Complex& b) {
-	if(this!=&b)
-	Re = b.Re;
-	Im = b.Im;
+	if (this != &b) {
+		Re = b.Re;
+		Im = b.Im;
+	}
 	return *this;
 }
 
@@ -94,7 +95,7 @@ ostream& operator <<(ostream& os, const Complex& b) {
 
 }
 
-istream& operator >>(istream& is,  Complex& b) {
+istream& operator >>(istream& is, Complex& b) {
 	is >> b.Re;
 	is >> b.Im;
 	return is;
@@ -107,9 +108,9 @@ int main() {
 	Complex a;
 	Complex b(23, 92);
 	Complex c(b);
-	cout << "РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ : " << a << endl << "РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РёРЅРёС†РёР°Р»РёР·Р°С‚РѕСЂ : " << b << endl << "РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РєРѕРїРёСЂРѕРІР°РЅРёСЏ : " << c << endl;
+	cout << "Конструктор по умолчанию : " << a << endl << "Конструктор инициализатор : " << b << endl << "Конструктор копирования : " << c << endl;
 	c.SetComplex(124, -1);
-	cout << "Р”РѕСЃС‚СѓРї Рє Р·Р°С‰РёС‰РµРЅРЅС‹Рј РїРѕР»СЏРј : " << c.GetComplex() << endl;
+	cout << "Доступ к защищенным полям : " << c.GetComplex() << endl;
 	Complex d;
 	d = a + b;
 	cout << "+ : " << d << endl;
@@ -132,7 +133,7 @@ int main() {
 	Complex k(-9, 4);
 	cout << "<< : " << k << endl;
 	Complex l;
-	cout << "Р’РІРµРґРёС‚Рµ РєРѕРјРїР»РµРєСЃРЅРѕРµ С‡РёСЃР»Рѕ" << endl;
+	cout << "Введите комплексное число" << endl;
 	cin >> l;
 	cout << ">> : " << l << endl;
 }
